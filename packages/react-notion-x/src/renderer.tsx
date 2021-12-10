@@ -81,7 +81,7 @@ export const NotionRenderer: React.FC<NotionRendererProps> = ({
     mediumZoom({
       container: '.notion-viewport',
       background: 'rgba(0, 0, 0, 0.8)',
-      margin: getMediumZoomMargin()
+      margin: 0, // getMediumZoomMargin()
     })
 
   return (
@@ -140,20 +140,20 @@ export const NotionBlockRenderer: React.FC<NotionBlockRendererProps> = ({
   )
 }
 
-function getMediumZoomMargin() {
-  const width = window.innerWidth
+// function getMediumZoomMargin() {
+//   const width = window.innerWidth
 
-  if (width < 500) {
-    return 8
-  } else if (width < 800) {
-    return 20
-  } else if (width < 1280) {
-    return 30
-  } else if (width < 1600) {
-    return 40
-  } else if (width < 1920) {
-    return 48
-  } else {
-    return 72
-  }
-}
+//   if (width < 500) {
+//     return 8
+//   } else if (width < 800) {
+//     return 20
+//   } else if (width < 1280) {
+//     return 30
+//   } else if (width < 1600) {
+//     return 40
+//   } else if (width < 1920) {
+//     return 48
+//   } else {
+//     return 72
+//   }
+// }

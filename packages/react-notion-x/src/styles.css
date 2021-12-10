@@ -248,6 +248,7 @@
 
 .medium-zoom-image--opened {
   z-index: 301;
+  transform: scale(1.0) !important;
 }
 
 .notion-frame {
