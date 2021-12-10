@@ -238,8 +238,8 @@ export const Property: React.FC<{
 
           break
 
-        case 'created_time':
-          content = format(new Date(block.created_time), 'MMM d, YYY hh:mm aa')
+        case 'created_time':  // 修改博客创建时间格式
+          content = format(new Date(block.created_time), 'yyyy-MM-dd / HH:mm aa')
           break
 
         case 'last_edited_time':

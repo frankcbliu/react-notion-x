@@ -82,7 +82,7 @@ export const Block: React.FC<BlockProps> = (props) => {
   // ugly hack to make viewing raw collection views work properly
   // e.g., 6d886ca87ab94c21a16e3b82b43a57fb
   if (level === 0 && block.type === 'collection_view') {
-    ;(block as any).type = 'collection_view_page'
+    ; (block as any).type = 'collection_view_page'
   }
 
   const blockId = hideBlockId
@@ -107,8 +107,8 @@ export const Block: React.FC<BlockProps> = (props) => {
             block.type === 'page'
               ? block.properties
               : {
-                  title: recordMap.collection[block.collection_id]?.value?.name
-                }
+                title: recordMap.collection[block.collection_id]?.value?.name
+              }
 
           const coverPosition = (1 - (page_cover_position || 0.5)) * 100
 
@@ -254,10 +254,7 @@ export const Block: React.FC<BlockProps> = (props) => {
                         hasToc && 'notion-page-content-has-toc'
                       )}
                     >
-                      <article className='notion-page-content-inner'>
-                        {children}
-                      </article>
-
+                      {/* 菜饼不菜: 交换目录位置 */}
                       {hasAside && (
                         <aside className='notion-aside'>
                           {hasToc && (
@@ -283,7 +280,7 @@ export const Block: React.FC<BlockProps> = (props) => {
                                         'notion-table-of-contents-item',
                                         `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
                                         activeSection === id &&
-                                          'notion-table-of-contents-active-item'
+                                        'notion-table-of-contents-active-item'
                                       )}
                                     >
                                       <span
@@ -305,6 +302,9 @@ export const Block: React.FC<BlockProps> = (props) => {
                           {pageAside}
                         </aside>
                       )}
+                      <article className='notion-page-content-inner'>
+                        {children}
+                      </article>
                     </div>
 
                     {pageFooter}
@@ -605,9 +605,8 @@ export const Block: React.FC<BlockProps> = (props) => {
       const columns =
         parent?.content?.length || Math.max(2, Math.ceil(1.0 / ratio))
 
-      const width = `calc((100% - (${
-        columns - 1
-      } * ${spacerWidth})) * ${ratio})`
+      const width = `calc((100% - (${columns - 1
+        } * ${spacerWidth})) * ${ratio})`
       const style = { width }
 
       return (
@@ -645,7 +644,7 @@ export const Block: React.FC<BlockProps> = (props) => {
       if (components.callout) {
         return <components.callout block={block} className={blockId} />
       } else {
-      
+
         return (
           <div
             className={cs(
