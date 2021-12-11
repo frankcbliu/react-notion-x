@@ -1,5 +1,6 @@
 import { Block, BlockMap } from 'notion-types'
 import isUrl from 'is-url-superb'
+import { format } from 'date-fns'
 
 export const cs = (...classes: Array<string | undefined | false>) =>
   classes.filter((a) => !!a).join(' ')
@@ -63,9 +64,8 @@ export const defaultMapImageUrl = (url: string, block: Block) => {
 
   // more recent versions of notion don't proxy unsplash images
   if (!url.startsWith('https://images.unsplash.com')) {
-    url = `https://www.notion.so${
-      url.startsWith('/image') ? url : `/image/${encodeURIComponent(url)}`
-    }`
+    url = `https://www.notion.so${url.startsWith('/image') ? url : `/image/${encodeURIComponent(url)}`
+      }`
 
     const notionImageUrlV2 = new URL(url)
     let table = block.parent_table === 'space' ? 'block' : block.parent_table
@@ -92,25 +92,27 @@ export const defaultMapPageUrl = (rootPageId?: string) => (pageId: string) => {
   }
 }
 
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-]
+// const months = [
+//   'Jan',
+//   'Feb',
+//   'Mar',
+//   'Apr',
+//   'May',
+//   'Jun',
+//   'Jul',
+//   'Aug',
+//   'Sep',
+//   'Oct',
+//   'Nov',
+//   'Dec'
+// ]
 
 export const formatDate = (input: string) => {
   const date = new Date(input)
-  const month = date.getMonth()
-  return `${months[month]} ${date.getDate()}, ${date.getFullYear()}`
+  // const month = date.getMonth()
+  // return `${months[month]} ${date.getDate()}, ${date.getFullYear()}`
+  // 修改自定义的时间样式
+  return format(date, 'yyyy-MM-dd')
 }
 
 export const isBrowser = typeof window !== 'undefined'
