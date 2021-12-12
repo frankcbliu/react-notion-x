@@ -29,8 +29,8 @@ export async function getStaticPaths() {
     }
   }
 
-  const rootNotionPageId = '067dd719a912471ea9a3ac10710e7fdf'
-  const rootNotionSpaceId = 'fde5ac74-eea3-4527-8f00-4482710e1af3'
+  const rootNotionPageId = 'simple-table-f83f5d8c54aa48749030ed6d1565d911'
+  const rootNotionSpaceId = '9b3b041b-5d31-4cc5-91d9-4437b659a00e'
 
   // This crawls all public pages starting from the given root page in order
   // for next.js to pre-generate all pages via static site generation (SSG).

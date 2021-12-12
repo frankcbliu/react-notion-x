@@ -12,6 +12,7 @@ export type BlockType =
   | 'quote'
   | 'equation'
   | 'to_do'
+  | 'table'
   | 'table_of_contents'
   | 'divider'
   | 'column_list'
@@ -50,6 +51,7 @@ export type Block =
   | SubHeaderBlock
   | SubSubHeaderBlock
   | TodoBlock
+  | TableBlock
   | TableOfContentsBlock
   | DividerBlock
   | ColumnListBlock
@@ -208,6 +210,12 @@ export interface TodoBlock extends BaseTextBlock {
   }
 }
 
+export interface TableBlock extends BaseBlock {
+  type: 'table',
+  format?: {
+    table_block_column_order: string[]
+  }
+}
 export interface TableOfContentsBlock extends BaseBlock {
   type: 'table_of_contents'
   format?: {
