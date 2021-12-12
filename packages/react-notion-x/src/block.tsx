@@ -25,6 +25,7 @@ import { cs, getListNumber, isUrl } from './utils'
 import { Text } from './components/text'
 import { SyncPointerBlock } from './components/sync-pointer-block'
 import { AssetWrapper } from './components/asset-wrapper'
+import {Table} from './components/table'
 
 interface BlockProps {
   block: types.Block
@@ -813,24 +814,8 @@ export const Block: React.FC<BlockProps> = (props) => {
 
     // support simple table
     case 'table':
-      // block content ids
-      console.log('block-content: ', block.content)
-      // column order name
-      let columnNames = block.format?.table_block_column_order
-      console.log('column-order-name: ', block.format?.table_block_column_order)
-      // content-text
-      for (let i = 0; i < block.content.length; i++) {
-        const id = block.content[i];
-        const properties = recordMap['block'][id].value.properties
-        for (let j = 0; j < columnNames.length; j++) {
-          const name = columnNames[j];
-          console.log(name, JSON.stringify(properties[name][0]))
-        }
-      }
-      console.log('blockId', blockId)
-      return <div className={cs('notion-row', blockId)}>nothing</div>
+      return <Table block={block} />
     default:
-      console.log((block as any).type === 'table')
       if (process.env.NODE_ENV !== 'production') {
         console.log(
           'Unsupported type ' + (block as any).type,

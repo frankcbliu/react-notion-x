@@ -213,7 +213,9 @@ export interface TodoBlock extends BaseTextBlock {
 export interface TableBlock extends BaseBlock {
   type: 'table',
   format?: {
-    table_block_column_order: string[]
+    table_block_column_order: string[],
+    table_block_column_header: boolean,
+    table_block_row_header: boolean
   }
 }
 export interface TableOfContentsBlock extends BaseBlock {
