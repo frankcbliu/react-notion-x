@@ -23,8 +23,8 @@ export const Table: React.FC<{
   // column name in order
   const columnNames = tableBlock.format?.table_block_column_order
   // if has header
-  const rowHeader = tableBlock.format?.table_block_column_header
-  const columnHeader = tableBlock.format?.table_block_row_header
+  const rowHeader = !!(tableBlock.format?.table_block_column_header)
+  const columnHeader = !!(tableBlock.format?.table_block_row_header)
 
   const wapperStyle: React.CSSProperties = {
     display: 'flex'
@@ -38,7 +38,10 @@ export const Table: React.FC<{
     transform: 'translateX(-1px)'
   }
 
-  let rowFlag = true
+  function isFirst(arr: string[], value: string): boolean {
+    return arr.indexOf(value) === 0
+  }
+
   return (
     <div className={cs('notion-table-block', className)}>
       <div style={wapperStyle}>
@@ -51,25 +54,17 @@ export const Table: React.FC<{
                 const row = recordMap['block'][id]
                 const properties = row.value?.properties
 
-                const tableDataStyle: React.CSSProperties = {
-                  border: '1px solid rgb(233, 233, 231)',
-                  position: 'relative',
-                  verticalAlign: 'top',
-                  minWidth: '120px',
-                  maxWidth: '240px',
-                  minHeight: '32px',
-                }
-                console.log('row', id, rowFlag)
-                if (rowHeader && rowFlag) {
-                  tableDataStyle.background = 'rgb(247, 246, 243)'
-                  rowFlag = false
-                }
-                const bottomStyle: React.CSSProperties = {
-                  borderBottom: 'none !important'
-                }
                 return (
-                  <tr className="notion-table-row" key={id}  style={bottomStyle}>
+                  <tr className="notion-table-row" key={id}>
                     {columnNames.map((name) => {
+                      const tableDataStyle: React.CSSProperties = {
+                        border: '1px solid rgb(233, 233, 231)',
+                        position: 'relative',
+                        verticalAlign: 'top',
+                        minWidth: '120px',
+                        maxWidth: '240px',
+                        minHeight: '32px',
+                      }
                       const cellStyle: React.CSSProperties = {
                         maxWidth: '100%',
                         width: '100%',
@@ -80,8 +75,9 @@ export const Table: React.FC<{
                         fontSize: '14px',
                         lineHeight: '20px'
                       }
-                      console.log('line', name, columnNames.indexOf(name), columnHeader && (columnNames.indexOf(name) === 0))
-                      if (columnHeader && (columnNames.indexOf(name) === 0)) {
+
+                      // 判断是否需要设置 header
+                      if ((rowHeader && isFirst(propertyIds, id)) || (columnHeader && isFirst(columnNames, name))) {
                         tableDataStyle.background = 'rgb(247, 246, 243)'
                       } else {
                         tableDataStyle.background = 'transparent'
@@ -89,7 +85,7 @@ export const Table: React.FC<{
 
                       // 如果 properties 不存在，说明有空行
                       const value = properties ? properties[name] : [['']]
-                      return <td style={tableDataStyle} key={id + name}>
+                      return <td style={tableDataStyle} key={name}>
                         <div className="notion-table-cell">
                           <div className="notion-table-cell-text notranslate" style={cellStyle}>
                             <Text value={value} block={block} />
