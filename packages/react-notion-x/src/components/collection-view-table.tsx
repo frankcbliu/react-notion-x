@@ -36,7 +36,6 @@ export const CollectionViewTable: React.FC<CollectionViewProps> = ({
     <div
       className='notion-table'
       style={{
-        width,
         maxWidth: width
       }}
     >

@@ -35,7 +35,8 @@ export const Table: React.FC<{
 
   const marginStyle: React.CSSProperties = {
     margin: '8px 0 8px 0',
-    transform: 'translateX(-1px)'
+    transform: 'translateX(-1px)',
+    overflow: 'auto'
   }
 
   function isFirst(arr: string[], value: string): boolean {
@@ -53,41 +54,24 @@ export const Table: React.FC<{
               {propertyIds.map((id) => {
                 const row = recordMap['block'][id]
                 const properties = row.value?.properties
+                let needHeader = false
 
                 return (
                   <tr className="notion-table-row" key={id}>
                     {columnNames.map((name) => {
-                      const tableDataStyle: React.CSSProperties = {
-                        border: '1px solid rgb(233, 233, 231)',
-                        position: 'relative',
-                        verticalAlign: 'top',
-                        minWidth: '120px',
-                        maxWidth: '240px',
-                        minHeight: '32px',
-                      }
-                      const cellStyle: React.CSSProperties = {
-                        maxWidth: '100%',
-                        width: '100%',
-                        whiteSpace: 'pre-wrap',
-                        wordBreak: 'break-word',
-                        caretColor: 'transparent',
-                        backgroundColor: 'transparent',
-                        fontSize: '14px',
-                        lineHeight: '20px'
-                      }
 
                       // 判断是否需要设置 header
                       if ((rowHeader && isFirst(propertyIds, id)) || (columnHeader && isFirst(columnNames, name))) {
-                        tableDataStyle.background = 'rgb(247, 246, 243)'
+                        needHeader = true
                       } else {
-                        tableDataStyle.background = 'transparent'
+                        needHeader = false
                       }
 
                       // 如果 properties 不存在，说明有空行
                       const value = properties ? properties[name] : [['']]
-                      return <td style={tableDataStyle} key={name}>
-                        <div className="notion-table-cell">
-                          <div className="notion-table-cell-text notranslate" style={cellStyle}>
+                      return <td className={cs('notion-table-cell-container', needHeader ? 'notion-table-cell-header' : '')} key={name}>
+                        <div className='notion-table-cell'>
+                          <div className="notion-table-cell-text notranslate">
                             <Text value={value} block={block} />
                           </div>
                         </div></td>
