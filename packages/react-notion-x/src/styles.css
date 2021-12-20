@@ -247,7 +247,7 @@
 
 .medium-zoom-image--opened {
   z-index: 301;
-  transform: scale(1.0) !important;
+  /* transform: scale(1.0) !important; */
 }
 
 .notion-frame {
@@ -2434,7 +2434,7 @@ svg.notion-page-icon {
 }
 
 .notion-table-cell-header {
-  background: rgb(247, 246, 243) 
+  background: rgb(247, 246, 243)
 }
 
 .dark-mode .notion-table-cell-header {
