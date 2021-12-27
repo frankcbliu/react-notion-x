@@ -74,7 +74,7 @@ export const Collection: React.FC<{
   }
 
   const style: React.CSSProperties = {}
-  if (collectionView.type === 'table' || collectionView.type === 'board') {
+  if (collectionView.type === 'board') {
     style.paddingLeft = padding
     style.paddingRight = padding
   }

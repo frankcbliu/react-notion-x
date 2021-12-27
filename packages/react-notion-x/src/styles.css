@@ -1261,6 +1261,11 @@ svg.notion-page-icon {
   margin: 0 6px 6px 0;
 }
 
+.notion-table-cell .notion-property-multi_select{
+  height: 100%;
+  align-items: center;
+}
+
 .notion-collection-card .notion-property-multi_select-item {
   margin: 0 6px 0 0;
 }
@@ -2417,7 +2422,7 @@ svg.notion-page-icon {
   width: 100%;
 }
 
-.notion-table-row {
+tr.notion-table-row {
   border-bottom: none !important;
 }
 
