@@ -243,10 +243,7 @@ export const Property: React.FC<{
           break
 
         case 'last_edited_time':
-          content = format(
-            new Date(block.last_edited_time),
-            'MMM d, YYY hh:mm aa'
-          )
+          content = format(new Date(block.last_edited_time), 'yyyy-MM-dd / HH:mm aa')
           break
 
         case 'created_by':
