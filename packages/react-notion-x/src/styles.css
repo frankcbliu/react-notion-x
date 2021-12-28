@@ -1258,7 +1258,7 @@ svg.notion-page-icon {
 }
 
 .notion-property-multi_select-item {
-  margin: 0 6px 6px 0;
+  margin: 0 3px;
 }
 
 .notion-table-cell .notion-property-multi_select{
@@ -1929,6 +1929,8 @@ svg.notion-page-icon {
   padding: 4px 0 8px;
   border-bottom: 1px solid var(--fg-color-0);
   margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
 }
 
 .notion-collection-row-body {
