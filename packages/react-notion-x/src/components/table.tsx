@@ -19,7 +19,7 @@ export const Table: React.FC<{
 
   // block content ids
   const propertyIds = tableBlock.content
-  console.log(JSON.stringify(tableBlock))
+  // console.log(JSON.stringify(tableBlock))
   // column name in order
   const columnNames = tableBlock.format?.table_block_column_order
   // if has header

@@ -25,7 +25,7 @@ import { cs, getListNumber, isUrl } from './utils'
 import { Text } from './components/text'
 import { SyncPointerBlock } from './components/sync-pointer-block'
 import { AssetWrapper } from './components/asset-wrapper'
-import {Table} from './components/table'
+import { Table } from './components/table'
 
 interface BlockProps {
   block: types.Block
@@ -102,7 +102,6 @@ export const Block: React.FC<BlockProps> = (props) => {
           page_full_width,
           page_small_text
         } = block.format || {}
-
         if (fullPage) {
           const properties =
             block.type === 'page'
@@ -163,7 +162,6 @@ export const Block: React.FC<BlockProps> = (props) => {
 
             setActiveSection(currentSectionId)
           }, throttleMs)
-
           if (hasToc) {
             React.useEffect(() => {
               window.addEventListener('scroll', actionSectionScrollSpy)
@@ -177,7 +175,6 @@ export const Block: React.FC<BlockProps> = (props) => {
           }
 
           const hasPageCover = pageCover || page_cover
-
           return (
             <div
               className={cs(
@@ -244,13 +241,13 @@ export const Block: React.FC<BlockProps> = (props) => {
                         <components.collectionRow block={block} />
                       )}
 
-                    {block.type === 'collection_view_page' && (
+                    {block.type === 'collection_view_page' && ( // 正确的进入了这里
                       <components.collection block={block} />
                     )}
 
                     <div
                       className={cs(
-                        'notion-page-content',
+                        'notion-page-content', // 错误的进入了这里
                         hasAside && 'notion-page-content-has-aside',
                         hasToc && 'notion-page-content-has-toc'
                       )}

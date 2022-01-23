@@ -182,7 +182,7 @@ export class SearchDialog extends React.Component<{
       ancestorId: this.props.rootBlockId
     })
 
-    console.log('search', query, result)
+    // console.log('search', query, result)
 
     let searchResult: any = null // TODO
     let searchError: types.APIError = null
